@@ -6,12 +6,35 @@ cases:
   first_case:
     login:
       url: "http://newtours.demoaut.com/"
-      username: "myuser:userName:name"
-      password: "mypass:password:name"
-      # The name or id of the html object (button) used to submit the login form
-      submit: "login:name"
+      actions:
+        # text:html element:name or id for text fields
+        - "myuser:userName:name"
+        - "mypass:password:name"
+        # for buttons html element:name or id
+        - "login:name"
+        - "button_name=login"
+        - "select_value=someting"
+        - "text_name=userName"
+        - "text_name=password"
+    run:
+      # The test will start from a page with minimal steps 
+      url: ""
+      actions: ""
+      # A way to identify when the test finished. The last action must locate the broser in a 
+      # page where the finish status can be reached
+      finished: "" 
+      # A list of html elemnts which data needs to be collected when the test is finished
+      # or reach a desired status
+      collect:
+        - 
 
-    # The page from witch the test cant start with a minimal number of steps clicks
+    # The number of times this test case will run
+    # iterations: 3
+
+    # The number of instaces for this test that will run in parallel.
+    # concurrency: 3
+
+    # The page from witch the test will start with a minimal number of steps clicks
     # start_page: "http://newtours.demoaut.com/"
     # A list of html object names or id to be clicked on this order to run a single instance
     # of the test and be located on a page we can check the statsus of the running test.
@@ -19,11 +42,7 @@ cases:
       # - "upload:id"
       # - "login"
 
-    # The number of times this test case will run
-    # iterations: 3
 
-    # The number of instaces for this test that will run in parallel.
-    # concurrency: 3
 
     # An html object that defines when the test have been finished.
     # finish_status: 
