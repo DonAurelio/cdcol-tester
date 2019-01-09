@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://18.215.10.145:8080/admin/ -->
+<html class="gr__18_215_10_145"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Airflow - DAGs</title>
+    
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    
+    
+
+  
+        <link href="./aiflow_files/bootstrap.min.css" rel="stylesheet">
+        <link href="./aiflow_files/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="./aiflow_files/admin.css" rel="stylesheet">
+        <style>
+        body {
+            padding-top: 4px;
+        }
+        </style>
+    
+  <link href="./aiflow_files/bootstrap-theme.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="http://18.215.10.145:8080/static/pin_30.png">
+  <link rel="stylesheet" type="text/css" href="./aiflow_files/main.css">
+
+<link href="./aiflow_files/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+<link href="./aiflow_files/bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+    
+    
+  <style type="text/css" id="b537c40b-4fa1-40f2-831b-c235f7eced3a">.bd8d87b1-5dfd-409c-b8e2-e2c97ce90b14 .close:hover, .bd8d87b1-5dfd-409c-b8e2-e2c97ce90b14 .close:focus { background-image: url("data:image/png;base64,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"); }
+
+.bd8d87b1-5dfd-409c-b8e2-e2c97ce90b14 .close { position: absolute; opacity: 0; transform: scale(0.6); left: -8px; top: -8px; width: 16px; height: 16px; cursor: pointer; z-index: 1000; transition: opacity 275ms ease 0s, transform 275ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, background 175ms ease 0s; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAeBJREFUeNqMU01rGlEUPW9EUJeR2QyUcZ1uVLrr3zAbpdhfFWphVgUFR1ylNGR04qaIUBQXbaOmoOQHZObJW83H6UZfGq3gWb7LPe/ec88R2CGXyyFJEkRR9A7Ah2q1+t627TcAsNlsnqbT6XcAX7LZ7I98Po/tdguSOMR1s9nkZDJhkiTcI04STiYTNptNArgGACHEUfN9p9N5aYpjKqWolGIcx/q93W4TwP0hyeder8d/EQQBpZSUUjIIglc113UJoGUYBgDgstFo6KLjOPx2e0uSDMOQYRiSJMfjMX3fZ5qmJMl6vU4AlzAMozWfz/XYruvSNE2ORiNNOhgMaFkWfd9nFEUkyfl8TiHEJ5Qrld/75v1vA8+jaZp8/PPIxWLB4sUFPc/TU8U7gcvl8k/Urq6eSVIpRSmlJlktlyzZNu1SiavVSjdLKamUIknWarVnAycghECSJBAAMpkMTqJcqfw6XMG7u2OxWORyueTi4eGVJkcrCCG0iFEU0R8OaVkWB8Phi4g7Tfr9vvaEFhHA20ajTpJM05S+73M8Hh+d8evNDR3H0aT6jNpIrnu2kbrdLgG0DrU5aeXkDCvrMH3chSk+M0yaIp/PI47j/8Z5vV4/zWYzHedCoQApJUji7wAqNGpVYJkfGwAAAABJRU5ErkJggg==") no-repeat border-box border-box; }
+
+@keyframes fontbulger { 
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+.bd8d87b1-5dfd-409c-b8e2-e2c97ce90b14 { animation: fontbulger 0.2s ease-in-out 0s 2 alternate none running; background-color: rgba(238, 238, 238, 0.8); border-radius: 0.2em; color: rgb(170, 170, 170); font: inherit; position: relative; transition-duration: 0.5s; transition-property: color, background-color; transition-timing-function: ease-in-out; box-shadow: rgb(238, 238, 238) 0px 0px 12px; }
+
+.default-red-aa94e3d5-ab2f-4205-b74e-18ce31c7c0ce { background-color: rgba(255, 128, 128, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(255, 128, 128) 0px 0px 12px; }
+
+.default-orange-da01945e-1964-4d27-8a6c-3331e1fe7f14 { background-color: rgba(255, 210, 170, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(255, 210, 170) 0px 0px 12px; }
+
+.default-yellow-aaddcf5c-0e41-4f83-8a64-58c91f7c6250 { background-color: rgba(255, 255, 170, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(255, 255, 170) 0px 0px 12px; }
+
+.default-green-c4d41e0a-e40f-4c3f-91ad-2d66481614c2 { background-color: rgba(170, 255, 170, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(170, 255, 170) 0px 0px 12px; }
+
+.default-cyan-f88e8827-e652-4d79-a9d9-f6c8b8ec9e2b { background-color: rgba(170, 255, 255, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(170, 255, 255) 0px 0px 12px; }
+
+.default-purple-c472dcdb-f2b8-41ab-bb1e-2fb293df172a { background-color: rgba(255, 170, 255, 0.8); color: rgb(0, 0, 0); box-shadow: rgb(255, 170, 255) 0px 0px 12px; }
+
+.default-grey-da7cb902-89c6-46fe-b0e7-d3b35aaf237a { background-color: rgba(119, 119, 119, 0.8); color: rgb(255, 255, 255); box-shadow: rgb(119, 119, 119) 0px 0px 12px; }
+
+</style></head>
+  <body data-gr-c-s-loaded="true">
+    
+<div class="container">
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse">
+          <span class="sr-only" data-original-title="" title="">Toggle navigation</span>
+          <span class="icon-bar" data-original-title="" title=""></span>
+          <span class="icon-bar" data-original-title="" title=""></span>
+          <span class="icon-bar" data-original-title="" title=""></span>
+        </button>
+          <a class="navbar-brand" rel="home" href="http://18.215.10.145:8080/admin/" style="cursor: pointer;">
+              <img style="float: left; width:35px; margin-top: -7px;" src="./aiflow_files/pin_100.png" title="None">
+              <span data-original-title="" title="">Airflow</span>
+          </a>
+      </div>
+      <!-- navbar content -->
+      <div class="collapse navbar-collapse" id="admin-navbar-collapse">
+        
+        <ul class="nav navbar-nav">
+          
+  
+        <li class="active">
+          <a href="http://18.215.10.145:8080/admin/">DAGs</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+            Data Profiling<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://18.215.10.145:8080/admin/queryview/">Ad Hoc Query</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/chart/">Charts</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/knownevent/">Known Events</a>
+            </li>
+          </ul>
+        </li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+            Browse<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://18.215.10.145:8080/admin/slamiss/">SLA Misses</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/taskinstance/">Task Instances</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/log/">Logs</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/basejob/">Jobs</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/dagrun/">DAG Runs</a>
+            </li>
+          </ul>
+        </li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+            Admin<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://18.215.10.145:8080/admin/pool/">Pools</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/configurationview/">Configuration</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/user/">Users</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/connection/">Connections</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/variable/">Variables</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/xcom/">XComs</a>
+            </li>
+            <li>
+              <a href="http://18.215.10.145:8080/admin/rest_api/">REST API Plugin</a>
+            </li>
+          </ul>
+        </li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+            Docs<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://pythonhosted.org/airflow/">Documentation</a>
+            </li>
+            <li>
+              <a href="https://github.com/airbnb/airflow">Github</a>
+            </li>
+          </ul>
+        </li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+            About<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://18.215.10.145:8080/admin/versionview/">Version</a>
+            </li>
+          </ul>
+        </li>
+      
+
+        </ul>
+        
+
+        
+        <ul class="nav navbar-right">
+          
+  
+  
+
+        </ul>
+        
+        <!-- clock and logout -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="clock" class="jqclock"><span class="clocktime">17:58 UTC</span></a></li>
+            
+              <li><a href="http://18.215.10.145:8080/admin/airflow/logout"><span data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-off" data-original-title="Logout"></span></a></li>
+            
+        </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a id="clock"></a></li>
+          </ul>
+      </div>
+      </div>
+</nav>
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+  <h2>DAGs</h2>
+
+  <div id="main_content" style="">
+    <div id="dags_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dags_length"><label>Show <select name="dags_length" aria-controls="dags" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="dags_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dags"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="dags" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="dags_info">
+        <thead>
+            <tr role="row"><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;"></th><th width="12" class="sorting_disabled" rowspan="1" colspan="1" style="width: 12px;"><span id="pause_header" class="glyphicon glyphicon-info-sign" title="" data-original-title="Use this toggle to pause a DAG. The scheduler won&#39;t schedule new tasks instances for a paused DAG. Tasks already running at pause time won&#39;t be affected."></span></th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;">DAG</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;">Schedule</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;">Owner</th><th style="padding-left: 5px; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">Recent Tasks
+                  <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Status of tasks from all active DAG runs or, if not currently active, from most recent run."></span>
+                  
+                </th><th style="padding-left: 5px; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">Last Run <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Execution Date/Time of Highest Dag Run."></span>
+                </th><th style="padding-left: 5px; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">DAG Runs
+                  <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Status of all previous DAG runs."></span>
+                  
+                </th><th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 0px;">Links</th></tr>
+        </thead>
+        <tbody>
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        <tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=bosque_no_bosque" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-bosque_no_bosque" dag_id="bosque_no_bosque" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=bosque_no_bosque" title="">
+                        bosque_no_bosque
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule bosque_no_bosque" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=bosque_no_bosque">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-bosque_no_bosque" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">4</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">4</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">7</text><circle stroke-width="2" stroke="orange" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-21+20%3A04%3A49.701851&amp;dag_id=bosque_no_bosque">
+                                2018-11-21 20:04
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-21 20:04"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-bosque_no_bosque" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=bosque_no_bosque" onclick="return confirmTriggerDag(&#39;bosque_no_bosque&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=bosque_no_bosque" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=bosque_no_bosque" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=bosque_no_bosque" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=bosque_no_bosque" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=bosque_no_bosque" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=bosque_no_bosque" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=bosque_no_bosque" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=bosque_no_bosque" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=bosque_no_bosque" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=compuesto_de_medianas" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-compuesto_de_medianas" dag_id="compuesto_de_medianas" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=compuesto_de_medianas" title="">
+                        compuesto_de_medianas
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule compuesto_de_medianas" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=compuesto_de_medianas">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-compuesto_de_medianas" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">9</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-21+18%3A37%3A08.783984&amp;dag_id=compuesto_de_medianas">
+                                2018-11-21 18:37
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-21 18:37"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-compuesto_de_medianas" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">16</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=compuesto_de_medianas" onclick="return confirmTriggerDag(&#39;compuesto_de_medianas&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=compuesto_de_medianas" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=compuesto_de_medianas" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=compuesto_de_medianas" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=compuesto_de_medianas" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=compuesto_de_medianas" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=compuesto_de_medianas" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=compuesto_de_medianas" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=compuesto_de_medianas" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=compuesto_de_medianas" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=deteccion_cambios_PCA" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-deteccion_cambios_PCA" dag_id="deteccion_cambios_PCA" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=deteccion_cambios_PCA" title="">
+                        deteccion_cambios_PCA
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule deteccion_cambios_PCA" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=deteccion_cambios_PCA">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-deteccion_cambios_PCA" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">8</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="orange" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-21+20%3A04%3A55.002973&amp;dag_id=deteccion_cambios_PCA">
+                                2018-11-21 20:04
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-21 20:04"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-deteccion_cambios_PCA" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=deteccion_cambios_PCA" onclick="return confirmTriggerDag(&#39;deteccion_cambios_PCA&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=deteccion_cambios_PCA" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=deteccion_cambios_PCA" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=deteccion_cambios_PCA" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=deteccion_cambios_PCA" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=deteccion_cambios_PCA" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=deteccion_cambios_PCA" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=deteccion_cambios_PCA" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=deteccion_cambios_PCA" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=deteccion_cambios_PCA" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=example_dummy" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-default off btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-example_dummy" dag_id="example_dummy" type="checkbox" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=example_dummy" title="">
+                        example_dummy
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule example_dummy" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=example_dummy">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  airflow
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-example_dummy" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <!--No DAG Runs-->
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-example_dummy" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">1</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=example_dummy" onclick="return confirmTriggerDag(&#39;example_dummy&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=example_dummy" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=example_dummy" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=example_dummy" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=example_dummy" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=example_dummy" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=example_dummy" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=example_dummy" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=example_dummy" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=example_dummy" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=kmeans" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-kmeans" dag_id="kmeans" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=kmeans" title="">
+                        kmeans
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule kmeans" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=kmeans">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-kmeans" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">435</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">1</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-12-14+01%3A41%3A23.147268&amp;dag_id=kmeans">
+                                2018-12-14 01:41
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-12-14 05:51"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-kmeans" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">1</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=kmeans" onclick="return confirmTriggerDag(&#39;kmeans&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=kmeans" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=kmeans" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=kmeans" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=kmeans" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=kmeans" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=kmeans" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=kmeans" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=kmeans" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=kmeans" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=ndsi" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-ndsi" dag_id="ndsi" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=ndsi" title="">
+                        ndsi
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule ndsi" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=ndsi">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-ndsi" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">13</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-21+18%3A37%3A27.712815&amp;dag_id=ndsi">
+                                2018-11-21 18:37
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-21 18:37"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-ndsi" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=ndsi" onclick="return confirmTriggerDag(&#39;ndsi&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=ndsi" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=ndsi" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=ndsi" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=ndsi" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=ndsi" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=ndsi" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=ndsi" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=ndsi" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=ndsi" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=ndvi" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-ndvi" dag_id="ndvi" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=ndvi" title="">
+                        ndvi
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule ndvi" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=ndvi">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-ndvi" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">31</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+19%3A00%3A16.200823&amp;dag_id=ndvi">
+                                2018-11-22 19:00
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 19:00"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-ndvi" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=ndvi" onclick="return confirmTriggerDag(&#39;ndvi&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=ndvi" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=ndvi" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=ndvi" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=ndvi" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=ndvi" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=ndvi" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=ndvi" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=ndvi" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=ndvi" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba16" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba16" dag_id="prueba16" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba16" title="">
+                        prueba16
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba16" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba16">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba16" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <!--No DAG Runs-->
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba16" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba16" onclick="return confirmTriggerDag(&#39;prueba16&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba16" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba16" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba16" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba16" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba16" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba16" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba16" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba16" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba16" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba32" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba32" dag_id="prueba32" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba32" title="">
+                        prueba32
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba32" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba32">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba32" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <!--No DAG Runs-->
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba32" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba32" onclick="return confirmTriggerDag(&#39;prueba32&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba32" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba32" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba32" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba32" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba32" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba32" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba32" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba32" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba32" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba8" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-default off btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba8" dag_id="prueba8" type="checkbox" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba8" title="">
+                        prueba8
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba8" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba8">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba8" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <!--No DAG Runs-->
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba8" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba8" onclick="return confirmTriggerDag(&#39;prueba8&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba8" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba8" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba8" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba8" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba8" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba8" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba8" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba8" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba8" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba_16_1" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-default off btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba_16_1" dag_id="prueba_16_1" type="checkbox" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba_16_1" title="">
+                        prueba_16_1
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba_16_1" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba_16_1">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba_16_1" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">33</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+04%3A01%3A33.421686&amp;dag_id=prueba_16_1">
+                                2018-11-22 04:01
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 04:01"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba_16_1" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba_16_1" onclick="return confirmTriggerDag(&#39;prueba_16_1&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba_16_1" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba_16_1" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba_16_1" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba_16_1" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba_16_1" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba_16_1" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba_16_1" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba_16_1" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba_16_1" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba_16_2" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-default off btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba_16_2" dag_id="prueba_16_2" type="checkbox" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba_16_2" title="">
+                        prueba_16_2
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba_16_2" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba_16_2">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba_16_2" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">33</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+04%3A01%3A38.273721&amp;dag_id=prueba_16_2">
+                                2018-11-22 04:01
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 04:01"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba_16_2" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">2</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba_16_2" onclick="return confirmTriggerDag(&#39;prueba_16_2&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba_16_2" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba_16_2" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba_16_2" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba_16_2" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba_16_2" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba_16_2" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba_16_2" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba_16_2" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba_16_2" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba_8_1" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba_8_1" dag_id="prueba_8_1" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba_8_1" title="">
+                        prueba_8_1
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba_8_1" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba_8_1">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba_8_1" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">17</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+15%3A13%3A22.597357&amp;dag_id=prueba_8_1">
+                                2018-11-22 15:13
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 15:13"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba_8_1" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba_8_1" onclick="return confirmTriggerDag(&#39;prueba_8_1&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba_8_1" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba_8_1" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba_8_1" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba_8_1" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba_8_1" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba_8_1" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba_8_1" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba_8_1" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba_8_1" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba_8_2" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba_8_2" dag_id="prueba_8_2" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba_8_2" title="">
+                        prueba_8_2
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba_8_2" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba_8_2">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba_8_2" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">17</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+15%3A13%3A38.416012&amp;dag_id=prueba_8_2">
+                                2018-11-22 15:13
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 15:13"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba_8_2" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba_8_2" onclick="return confirmTriggerDag(&#39;prueba_8_2&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba_8_2" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba_8_2" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba_8_2" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba_8_2" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba_8_2" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba_8_2" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba_8_2" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba_8_2" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba_8_2" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="odd">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=prueba_8_3" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-prueba_8_3" dag_id="prueba_8_3" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=prueba_8_3" title="">
+                        prueba_8_3
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule prueba_8_3" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=prueba_8_3">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-prueba_8_3" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">17</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-11-22+15%3A13%3A44.485902&amp;dag_id=prueba_8_3">
+                                2018-11-22 15:13
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-11-22 15:13"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-prueba_8_3" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=prueba_8_3" onclick="return confirmTriggerDag(&#39;prueba_8_3&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=prueba_8_3" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=prueba_8_3" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=prueba_8_3" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=prueba_8_3" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=prueba_8_3" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=prueba_8_3" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=prueba_8_3" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=prueba_8_3" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=prueba_8_3" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr><tr role="row" class="even">
+                <!-- Column 1: Edit dag -->
+                <td class="text-center" style="width:10px;">
+                    
+                    <a href="http://18.215.10.145:8080/admin/dagmodel/edit/?id=wofs-wf" title="Info">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" data-original-title="" title=""></span>
+                    </a>
+                    
+                </td>
+
+                <!-- Column 2: Turn dag on/off -->
+                <td>
+                  
+                    <div class="toggle btn btn-primary btn-xs" data-toggle="toggle" style="width: 34px; height: 21px;"><input id="toggle-wofs-wf" dag_id="wofs-wf" type="checkbox" checked="" data-toggle="toggle" data-size="mini"><div class="toggle-group"><label class="btn btn-primary btn-xs toggle-on">On</label><label class="btn btn-default btn-xs active toggle-off">Off</label><span class="toggle-handle btn btn-default btn-xs"></span></div></div>
+                  
+                </td>
+
+                <!-- Column 3: Name -->
+                <td>
+                    
+                    <a href="http://18.215.10.145:8080/admin/airflow/tree?dag_id=wofs-wf" title="">
+                        wofs-wf
+                    </a>
+                    
+                    
+                </td>
+
+                <!-- Column 4: Dag Schedule -->
+                <td>
+                    
+                    <a class="label label-default schedule wofs-wf" href="http://18.215.10.145:8080/admin/dagrun/?flt2_dag_id_equals=wofs-wf">
+                        None
+                    </a>
+                    
+                </td>
+
+                <!-- Column 5: Dag Owners -->
+                <td>
+                  cubo
+                </td>
+
+                <!-- Column 6: Recent Tasks -->
+                <td style="padding:0px; width:200px; height:10px;">
+                    <svg height="37" width="180px" id="task-run-wofs-wf" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">53</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="failed"></circle></g><g transform="translate(103.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="upstream_failed"></circle></g><g transform="translate(132.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="up_for_retry"></circle></g><g transform="translate(161.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="queued"></circle></g></svg>
+                </td>
+
+                <!-- Column 7: Last Run -->
+                <td class="text-nowrap">
+                    
+                        
+                        
+                            <a href="http://18.215.10.145:8080/admin/airflow/graph?execution_date=2018-12-05+23%3A07%3A59.946006&amp;dag_id=wofs-wf">
+                                2018-12-05 23:07
+                            </a> <span id="statuses_info" class="glyphicon glyphicon-info-sign" aria-hidden="true" title="" data-original-title="Start Date: 2018-12-05 23:07"></span>
+                        
+                    
+                </td>
+
+                <!-- Column 8: Dag Runs -->
+                <td style="padding:0px; width:120px; height:10px;">
+                    <svg height="37" width="110px" id="dag-run-wofs-wf" style="display: block;"><g transform="translate(16.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">4</text><circle stroke-width="2" stroke="green" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="success"></circle></g><g transform="translate(45.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3"></text><circle stroke-width="1" stroke="gainsboro" fill-opacity="0" r="12.5" title="" style="opacity: 1;" data-original-title="running"></circle></g><g transform="translate(74.5,18.5)"><text fill="black" text-anchor="middle" vertical-align="middle" font-size="8" y="3">3</text><circle stroke-width="2" stroke="red" fill-opacity="0" r="12.5" title="" style="cursor: pointer; opacity: 1;" data-original-title="failed"></circle></g></svg>
+                </td>
+
+                <!-- Column 9: Links -->
+                <td class="text-center" style="display:flex; flex-direction:row; justify-content:space-around;">
+                
+
+                <!-- Trigger Dag -->
+                <a href="http://18.215.10.145:8080/admin/airflow/trigger?dag_id=wofs-wf" onclick="return confirmTriggerDag(&#39;wofs-wf&#39;)" title="Trigger Dag">
+                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Tree -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tree?num_runs=25&amp;dag_id=wofs-wf" title="Tree View">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Graph -->
+                <a href="http://18.215.10.145:8080/admin/airflow/graph?dag_id=wofs-wf" title="Graph View">
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Duration -->
+                <a href="http://18.215.10.145:8080/admin/airflow/duration?dag_id=wofs-wf" title="Tasks Duration">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Retries -->
+                <a href="http://18.215.10.145:8080/admin/airflow/tries?dag_id=wofs-wf" title="Task Tries">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Landing Times -->
+                <a href="http://18.215.10.145:8080/admin/airflow/landing_times?dag_id=wofs-wf" title="Landing Times">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Gantt -->
+                <a href="http://18.215.10.145:8080/admin/airflow/gantt?dag_id=wofs-wf" title="Gantt View">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Code -->
+                <a href="http://18.215.10.145:8080/admin/airflow/code?dag_id=wofs-wf" title="Code View">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                <!-- Logs -->
+                <a href="http://18.215.10.145:8080/admin/log/?sort=1&amp;desc=1&amp;flt1_dag_id_equals=wofs-wf" title="Logs">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+                
+
+                <!-- Refresh -->
+                <a href="http://18.215.10.145:8080/admin/airflow/refresh?dag_id=wofs-wf" title="Refresh">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-original-title="" title=""></span>
+                </a>
+
+                </td>
+            </tr></tbody>
+    </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="dags_info" role="status" aria-live="polite">Showing 1 to 16 of 16 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="dags_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="dags_previous"><a href="http://18.215.10.145:8080/admin/#" aria-controls="dags" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="http://18.215.10.145:8080/admin/#" aria-controls="dags" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="dags_next"><a href="http://18.215.10.145:8080/admin/#" aria-controls="dags" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
+    
+    <a href="http://18.215.10.145:8080/admin/?showPaused=False">Hide Paused DAGs</a>
+    
+  </div>
+
+
+</div>
+
+
+    
+
+    <script src="./aiflow_files/jquery.min.js" type="text/javascript"></script>
+    <script src="./aiflow_files/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./aiflow_files/moment.min.js" type="text/javascript"></script>
+    <script src="./aiflow_files/select2.min.js" type="text/javascript"></script>
+    
+<script src="./aiflow_files/jqClock.min.js" type="text/javascript"></script>
+<script>
+    x = new Date()
+    var UTCseconds = (x.getTime() + x.getTimezoneOffset()*60*1000);
+    $("#clock").clock({
+        "seconds":"false",
+        "calendar":"false",
+        "format":"24",
+        "timestamp":UTCseconds
+    }).click(function(){
+        alert('ip-192-168-0-186.ec2.internal');
+    });
+    $('span').tooltip();
+</script>
+
+
+    
+  
+    
+  <script src="./aiflow_files/d3.v3.min.js"></script>
+  <script src="./aiflow_files/jquery.dataTables.min.js"></script>
+  <script src="./aiflow_files/bootstrap-toggle.min.js"></script>
+  <script>
+
+      function confirmTriggerDag(dag_id){
+          return confirm("Are you sure you want to run '"+dag_id+"' now?");
+      }
+      all_dags = $("[id^=toggle]");
+      $.each(all_dags, function(i,v) {
+        $(v).change (function() {
+          var dag_id =  $(v).attr('dag_id');
+          if ($(v).prop('checked')) {
+            is_paused = 'true'
+          } else {
+            is_paused = 'false'
+          }
+          url = 'airflow/paused?is_paused=' + is_paused + '&dag_id=' + dag_id;
+          $.ajax(url);
+        });
+      });
+      $('#dags').dataTable({
+        "iDisplayLength": 500,
+        "bSort": false,
+      });
+      $("#main_content").show(250);
+      diameter = 25;
+      circle_margin = 4;
+      stroke_width = 2;
+      stroke_width_hover = 6;
+      d3.json("/admin/airflow/blocked", function(error, json) {
+        $.each(json, function() {
+          $('.label.schedule.' + this.dag_id)
+          .attr('title', this.active_dag_run + '/' + this.max_active_runs + ' active dag runs')
+          .tooltip();
+          if(this.active_dag_run >= this.max_active_runs) {
+            $('.label.schedule.' + this.dag_id)
+            .css('background-color', 'red');
+          }
+        });
+      });
+      d3.json("/admin/airflow/dag_stats", function(error, json) {
+        for(var dag_id in json) {
+            states = json[dag_id];
+            g = d3.select('svg#dag-run-' + dag_id)
+              .attr('height', diameter + (stroke_width_hover * 2))
+              .attr('width', '110px')
+              .selectAll("g")
+              .data(states)
+              .enter()
+              .append('g')
+              .attr('transform', function(d, i) {
+                x = (i * (diameter + circle_margin)) + (diameter/2 + circle_margin);
+                y = (diameter/2) + stroke_width_hover;
+                return 'translate(' + x + ',' + y + ')';
+              });
+
+            g.append('text')
+              .attr('fill', 'black')
+              .attr('text-anchor', 'middle')
+              .attr('vertical-align', 'middle')
+              .attr('font-size', 8)
+              .attr('y', 3)
+              .text(function(d){ return d.count > 0 ? d.count : ''; });
+
+            g.append('circle')
+              .attr('stroke-width', function(d) {
+                  if (d.count > 0)
+                    return stroke_width;
+                  else {
+                    return 1;
+                  }
+              })
+              .attr('stroke', function(d) {
+                  if (d.count > 0)
+                    return d.color;
+                  else {
+                    return 'gainsboro';
+                  }
+              })
+              .attr('fill-opacity', 0)
+              .attr('r', diameter/2)
+              .attr('title', function(d) {return d.state})
+              .attr('style', function(d) {
+                if (d.count > 0)
+                    return"cursor:pointer;"
+              })
+              .on('click', function(d, i) {
+                  if (d.count > 0)
+                    window.location = "/admin/dagrun/?flt1_dag_id_equals=" + d.dag_id + "&flt2_state_equals=" + d.state;
+              })
+              .on('mouseover', function(d, i) {
+                if (d.count > 0) {
+                    d3.select(this).transition().duration(400)
+                      .attr('fill-opacity', 0.3)
+                      .style("stroke-width", stroke_width_hover);
+                }
+              })
+              .on('mouseout', function(d, i) {
+                if (d.count > 0) {
+                    d3.select(this).transition().duration(400)
+                      .attr('fill-opacity', 0)
+                      .style("stroke-width", stroke_width);
+                }
+              })
+              .style("opacity", 0)
+              .transition()
+              .duration(500)
+              .delay(function(d, i){return i*50;})
+              .style("opacity", 1);
+            d3.select("#loading").remove();
+        }
+        $("#pause_header").tooltip();
+        $("#statuses_info").tooltip();
+
+        $("circle").tooltip({
+          html: true,
+          container: "body",
+        });
+      });
+      d3.json("/admin/airflow/task_stats", function(error, json) {
+        for(var dag_id in json) {
+            states = json[dag_id];
+            g = d3.select('svg#task-run-' + dag_id)
+              .attr('height', diameter + (stroke_width_hover * 2))
+              .attr('width', '180px')
+              .selectAll("g")
+              .data(states)
+              .enter()
+              .append('g')
+              .attr('transform', function(d, i) {
+                x = (i * (diameter + circle_margin)) + (diameter/2 + circle_margin);
+                y = (diameter/2) + stroke_width_hover;
+                return 'translate(' + x + ',' + y + ')';
+              });
+
+            g.append('text')
+              .attr('fill', 'black')
+              .attr('text-anchor', 'middle')
+              .attr('vertical-align', 'middle')
+              .attr('font-size', 8)
+              .attr('y', 3)
+              .text(function(d){ return d.count > 0 ? d.count : ''; });
+
+            g.append('circle')
+              .attr('stroke-width', function(d) {
+                  if (d.count > 0)
+                    return stroke_width;
+                  else {
+                    return 1;
+                  }
+              })
+              .attr('stroke', function(d) {
+                  if (d.count > 0)
+                    return d.color;
+                  else {
+                    return 'gainsboro';
+                  }
+              })
+              .attr('fill-opacity', 0)
+              .attr('r', diameter/2)
+              .attr('title', function(d) {return d.state})
+              .attr('style', function(d) {
+                if (d.count > 0)
+                    return"cursor:pointer;"
+              })
+              .on('click', function(d, i) {
+                  if (d.count > 0)
+                    window.location = "/admin/taskinstance/?flt1_dag_id_equals=" + d.dag_id + "&flt2_state_equals=" + d.state;
+              })
+              .on('mouseover', function(d, i) {
+                if (d.count > 0) {
+                    d3.select(this).transition().duration(400)
+                      .attr('fill-opacity', 0.3)
+                      .style("stroke-width", stroke_width_hover);
+                }
+              })
+              .on('mouseout', function(d, i) {
+                if (d.count > 0) {
+                    d3.select(this).transition().duration(400)
+                      .attr('fill-opacity', 0)
+                      .style("stroke-width", stroke_width);
+                }
+              })
+              .style("opacity", 0)
+              .transition()
+              .duration(500)
+              .delay(function(d, i){return i*50;})
+              .style("opacity", 1);
+            d3.select("#loading").remove();
+        }
+        $("#pause_header").tooltip();
+        $("#statuses_info").tooltip();
+
+        $("circle").tooltip({
+          html: true,
+          container: "body",
+        });
+      });
+  </script>
+
+  
+</body></html>
