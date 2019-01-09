@@ -11,7 +11,6 @@ cases:
         - "my_pass:text_name=password"
         - "button_name=login"
         # - "value 1, value 2, value 3:select_name=someting"
-        # - "(+|-):check_name=password"
 
     run:
       # The test will start from a page with minimal steps 
