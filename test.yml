@@ -7,15 +7,12 @@ cases:
     login:
       url: "http://newtours.demoaut.com/"
       actions:
-        # text:html element:name or id for text fields
-        - "myuser:userName:name"
-        - "mypass:password:name"
-        # for buttons html element:name or id
-        - "login:name"
+        - "my_user:text_name=userName"
+        - "my_pass:text_name=password"
         - "button_name=login"
-        - "select_value=someting"
-        - "text_name=userName"
-        - "text_name=password"
+        # - "value 1, value 2, value 3:select_name=someting"
+        # - "(+|-):check_name=password"
+
     run:
       # The test will start from a page with minimal steps 
       url: ""
