@@ -17,7 +17,7 @@ class Test(object):
 
     def apply_test_case(self,case):
         self.apply_login(case)
-        self.apply_run(case)
+        # self.apply_run(case)
 
     def apply_login(self,case):
         login = case.get('login',{})
@@ -47,25 +47,38 @@ class Test(object):
         fields = action.split(':')
 
         if ':' in action:
-            # "my_user:text_name=userName"
-            data, element_id = action.split(':')
-            element, element_value = element_id.split('=')
-            element_type, element_attr  = element.split('_')
+            
+            # Actions with ':' in the middle are set actions, i.e., actions 
+            # that set text fields. These actions are parsed as follows:
+            
+            # Example: text_name=>userName:my_user", in the input type text
+            # with attibute name=userName place the text 'myuser'.
 
-            set_function = getattr(self,'set_' + element_type)
-            set_function(data,element_attr,element_value)
+            # text_name=>userName (tag_lookup)
+            #   text_name (tag_name_attr)
+            #       text (tag_name)
+            #       name (tag_attr)
+            #   userName (tag_attr_value)
+            # my_user (data)
+
+            tag_lookup, data = action.split(':')
+            tag_name_attr, tag_attr_value = element_id.split('=>')
+            tag_name, tag_attr = element.split('_')
+
+            set_function = getattr(self,'set_' + tag_name)
+            set_function(tag_attr,tag_attr_value,data)
 
         if ':' not in action:
-            element, element_value = action.split('=')
+            element, element_value = action.split('=>')
             element_type, element_attr  = element.split('_')
             button = self._driver.find_element(element_attr,element_value)
             button.click()
 
-    def set_text(self,data,attr_name,attr_value):
+    def set_text(self,attr_name,attr_value,data):
         box = self._driver.find_element(attr_name,attr_value)
         box.send_keys(data)
 
-    def set_select(self,data,attr_name,attr_value):
+    def set_select(self,attr_name,attr_value,data):
         select = self._driver.find_element(attr_name,attr_value)
         select = Select( select )
 

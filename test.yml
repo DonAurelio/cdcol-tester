@@ -5,24 +5,27 @@ cases:
   # Case name is defined by the user
   first_case:
     login:
-      url: "http://newtours.demoaut.com/"
+      # url: "http://newtours.demoaut.com/"
+      url: "file:///home/aureavm/Desktop/cdcol-tester/test/aiflow.html"
       actions:
-        - "my_user:text_name=userName"
-        - "my_pass:text_name=password"
-        - "button_name=login"
-        # - "value 1, value 2, value 3:select_name=someting"
+        - a_xpath=>//*[@id="dags"]/tbody/tr[16]/td[9]/a[1]
+        - alert.accept
+        # - "my_user:text_name=>userName"
+        # - "my_pass:text_name=>password"
+        # - "button_name=>login"
+        # - "value 1, value 2, value 3:select_name=>someting"
 
-    run:
-      # The test will start from a page with minimal steps 
-      url: "file:///home/aureavm/Desktop/cdcol-tester/test/index.html"
-      actions: ""
-      # A way to identify when the test finished. The last action must locate the broser in a 
-      # page where the finish status can be reached
-      finished: "table_1.row_1.col_1=" 
-      # A list of html elemnts which data needs to be collected when the test is finished
-      # or reach a desired status
-      collect:
-        - 
+    # run:
+    #   # The test will start from a page with minimal steps 
+    #   url: "file:///home/aureavm/Desktop/cdcol-tester/test/index.html"
+    #   actions: ""
+    #   # A way to identify when the test finished. The last action must locate the broser in a 
+    #   # page where the finish status can be reached
+    #   finished: "table_1.row_1.col_1=" 
+    #   # A list of html elemnts which data needs to be collected when the test is finished
+    #   # or reach a desired status
+    #   collect:
+    #     - 
 
     # The number of times this test case will run
     # iterations: 3
